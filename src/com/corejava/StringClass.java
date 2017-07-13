@@ -4,8 +4,27 @@ public class StringClass {
 	public static void main(String[] args) {
 		String s1 = new String("Sarvesh").intern();
 		String s2 = "Sarvesh";
+		String ss = s2.concat(" yadav");
+		System.out.println(ss);
 		String s4 = new String("Sarvesh");
+		
+		
+		///////////////////
+		
+		String x = "test";
+		System.out.println( x.length() ); 
+		
+		String[] x1 = new String[3];
+		System.out.println( x1.length );
+		
+		
+		String x2 = "big surprise";
+		System.out.println( x2.toString() ); 
+		//////////////////
 		/*
+		 * 
+		 * When we call intern() method its ref from heap (ie object created) will 
+		 * go for gc() and that refer to String pool .
 		 * 
 		 * 
 		 * In Java 6 days all interned strings were stored in the
