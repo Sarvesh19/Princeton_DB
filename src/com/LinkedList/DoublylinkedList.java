@@ -99,11 +99,29 @@ public class DoublylinkedList {
 	}
 
 	public void removeFirst() {
-
+		if (head == null) {
+			System.out.println("No element to remove");
+		}
+		if (head != null) {
+			Node temp = head;
+			head = temp.next;
+			head.previous = null;
+			temp.next = null;
+			modCount--;
+		}
 	}
 
 	public void removeLast() {
-
+		if (head == null) {
+			System.out.println("No element to remove");
+		}
+		if (head != null) {
+			Node temp = tail;
+			tail = temp.previous;
+			tail.next = null;
+			temp.previous = null;
+			modCount--;
+		}
 	}
 
 	public void remove(Object o) {
@@ -169,6 +187,8 @@ public class DoublylinkedList {
 
 		dll.remove("drrrr");
 		System.out.println(dll.size());
+		dll.removeFirst();
+		dll.removeLast();
 
 		dll.remove("eferfercw");
 		System.out.println(dll.size());
@@ -177,12 +197,12 @@ public class DoublylinkedList {
 				+ dll.contains("bhai ,,,me last me hu"));
 		System.out.println(dll);
 		System.out.println(dll.isEmpty());
-//		LinkedList l = new LinkedList();
-//		l.add("rvrv");
-//		l.add("sat");
-//		l.addLast("pitbull");
-//		l.add("145");
-//		System.out.println(l);
+		// LinkedList l = new LinkedList();
+		// l.add("rvrv");
+		// l.add("sat");
+		// l.addLast("pitbull");
+		// l.add("145");
+		// System.out.println(l);
 
 	}
 
