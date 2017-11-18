@@ -83,15 +83,14 @@ public class DoublylinkedList {
 			tail = head;
 		}
 		Node tailTemp = tail;
-		if(tailTemp !=null){
+		if (tailTemp != null) {
 			node.previous = tailTemp;
 			tail.next = node;
 			tail = tail.next;
 			node.next = null;
-			
+
 		}
-		
-		
+
 		this.modCount++;
 	}
 
@@ -108,10 +107,40 @@ public class DoublylinkedList {
 	}
 
 	public void remove(Object o) {
+		Node temp = head;
+		while (o != temp.element) {
+			temp = temp.next;
+			if (temp.next == null) {
+				System.out.println("Can't remove which is not in list");
+				break;
+			}
+		}
+		if (o.equals(temp.element)) {
+			Node tempprevious = temp.previous;
+			tempprevious.next = temp.next;
+			temp.next.previous = tempprevious;
+			temp.next = null;
+			temp.previous = null;
+
+			modCount--;
+		}
 
 	}
-	
-	public boolean contains(Object o){
+
+	public boolean contains(Object o) {
+
+		Node temp = head;
+		while (o != temp.element) {
+			temp = temp.next;
+			if (temp.next == null) {
+				System.out.println("No doesn't exist " + o);
+				break;
+			}
+
+		}
+		if (o.equals(temp.element)) {
+			System.out.println("Yes It is exist " + o);
+		}
 		return false;
 	}
 
@@ -125,6 +154,7 @@ public class DoublylinkedList {
 
 	public static void main(String[] args) throws UnexpectedException {
 		DoublylinkedList dll = new DoublylinkedList();
+		System.out.println(dll.isEmpty());
 		dll.add("ccw");
 		dll.add("sarvesh");
 		dll.add("raoda");
@@ -135,14 +165,24 @@ public class DoublylinkedList {
 		dll.add("www");
 		dll.addLast("bhai me last me hu");
 		dll.addLast("bhai me last me hu ekdum");
-		System.out.println(dll);
+		System.out.println(dll.size());
 
-		 LinkedList l = new LinkedList();
-		 l.add("rvrv");
-		 l.add("sat");
-		 l.addLast("pitbull");
-		 l.add("145");
-		 System.out.println(l);
+		dll.remove("drrrr");
+		System.out.println(dll.size());
+
+		dll.remove("eferfercw");
+		System.out.println(dll.size());
+		System.out.println("Is contains " + dll.contains("bhai me last me hu"));
+		System.out.println("Is contains "
+				+ dll.contains("bhai ,,,me last me hu"));
+		System.out.println(dll);
+		System.out.println(dll.isEmpty());
+//		LinkedList l = new LinkedList();
+//		l.add("rvrv");
+//		l.add("sat");
+//		l.addLast("pitbull");
+//		l.add("145");
+//		System.out.println(l);
 
 	}
 
