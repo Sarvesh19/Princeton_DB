@@ -94,8 +94,25 @@ public class DoublylinkedList {
 		this.modCount++;
 	}
 
-	public void addFirst() {
+	public void addFirst(Object o) {
+		Node node = new Node(null, null, o);
+		
+		if (head != null) {
+			Node temp = head;
+			node.next = temp;
+			node.previous = null;
+			temp.previous = node;
+			head = node;
+		}
+		if (head == null) {
+			head = node;
+		}
 
+		if (tail == null) {
+			tail = head;
+		}
+		
+		
 	}
 
 	public void removeFirst() {
@@ -189,6 +206,8 @@ public class DoublylinkedList {
 		System.out.println(dll.size());
 		dll.removeFirst();
 		dll.removeLast();
+		
+		dll.addFirst("kekde");
 
 		dll.remove("eferfercw");
 		System.out.println(dll.size());
