@@ -1,12 +1,24 @@
-import java.rmi.UnexpectedException;
-import java.util.LinkedList;
+package com.infy;
 
-public class DoublylinkedList {
+import java.rmi.UnexpectedException;
+
+import com.infy.MyStack;
+
+/* 
+ * This class is complete doublylinked list
+ * It prvides various features like adding deleting and etc.
+ * It contains minimal complexity
+ * @author Sarvesh Yadav
+ * 
+ * */
+public class DoublyLinkedList {
 	private Node head;
 	private Node tail;
 	private int modCount = 0;
-	private int count = 0;
 
+	/*
+	 * Inner Node class which provide property @next @previous and @element
+	 */
 	private class Node {
 		private Node next;
 		private Node previous;
@@ -21,6 +33,9 @@ public class DoublylinkedList {
 
 	}
 
+	/*
+	 * Adding element to the next node Need to handle when list is empty
+	 */
 	public boolean add(Object o) {
 		Node node = new Node(null, null, o);
 		if (head != null) {
@@ -40,6 +55,9 @@ public class DoublylinkedList {
 		return true;
 	}
 
+	/*
+	 * Adding element to the specific node
+	 */
 	public boolean add(Object o, int pos) throws UnexpectedException {
 		Node node = new Node(null, null, o);
 
@@ -73,6 +91,9 @@ public class DoublylinkedList {
 		return true;
 	}
 
+	/*
+	 * Adding element to last tail the node
+	 */
 	public void addLast(Object o) {
 		Node node = new Node(null, null, o);
 		if (head == null) {
@@ -94,9 +115,12 @@ public class DoublylinkedList {
 		this.modCount++;
 	}
 
+	/*
+	 * Adding element to first i.e. head the node
+	 */
 	public void addFirst(Object o) {
 		Node node = new Node(null, null, o);
-		
+
 		if (head != null) {
 			Node temp = head;
 			node.next = temp;
@@ -111,10 +135,12 @@ public class DoublylinkedList {
 		if (tail == null) {
 			tail = head;
 		}
-		
-		
+
 	}
 
+	/*
+	 * remove element to first i.e. head the node
+	 */
 	public void removeFirst() {
 		if (head == null) {
 			System.out.println("No element to remove");
@@ -128,6 +154,9 @@ public class DoublylinkedList {
 		}
 	}
 
+	/*
+	 * remove element to last i.e. tail the node
+	 */
 	public void removeLast() {
 		if (head == null) {
 			System.out.println("No element to remove");
@@ -141,6 +170,9 @@ public class DoublylinkedList {
 		}
 	}
 
+	/*
+	 * remove specific node using equals
+	 */
 	public void remove(Object o) {
 		Node temp = head;
 		while (o != temp.element) {
@@ -162,6 +194,9 @@ public class DoublylinkedList {
 
 	}
 
+	/*
+	 * check object is in list or not
+	 */
 	public boolean contains(Object o) {
 
 		Node temp = head;
@@ -179,49 +214,97 @@ public class DoublylinkedList {
 		return false;
 	}
 
+	/*
+	 * @return size of list
+	 */
 	public int size() {
 		return modCount;
 	}
 
+	/*
+	 * @return is list empty
+	 */
 	public boolean isEmpty() {
 		return head == null;
 	}
 
+	/*
+	 * @return forward iteration of list into my satck
+	 */
+	public Object[] iterateForward() {
+		Node temp = head;
+		if(head != null){
+			MyStack myStack = new MyStack();
+			if (temp != null) {
+				myStack.push(temp.element);
+			}
+			while (temp.next != null) {
+				temp = temp.next;
+				myStack.push(temp.element);
+				if (temp.next == null) {
+					break;
+				}
+			}
+			return myStack.getStack();
+		}else {
+			System.out.println("No element to iterate");
+		}
+		return null;
+	}
+	
+	/*
+	 * @return forward iteration of list into my satck
+	 */
+	public Object[] iterateBackword() {
+		Node temp = tail;
+		MyStack myStack = new MyStack();
+		if (temp != null) {
+			myStack.push(temp.element);
+		}
+		while (temp.previous != null) {
+			temp = temp.previous;
+			myStack.push(temp.element);
+			if (temp.next == null) {
+				break;
+			}
+		}
+		return myStack.getStack();
+
+	}
+
 	public static void main(String[] args) throws UnexpectedException {
-		DoublylinkedList dll = new DoublylinkedList();
-		System.out.println(dll.isEmpty());
-		dll.add("ccw");
-		dll.add("sarvesh");
-		dll.add("raoda");
-		dll.add("fr");
-		dll.add("eww");
-		dll.add("drrrr", 3);
-		dll.add("raefeoda");
-		dll.add("www");
-		dll.addLast("bhai me last me hu");
-		dll.addLast("bhai me last me hu ekdum");
-		System.out.println(dll.size());
+		boolean toRun = false;
+		if (toRun) {
+			DoublyLinkedList dll = new DoublyLinkedList();
+			System.out.println(dll.isEmpty());
+			dll.add("ccw");
+			dll.add("sarvesh");
+			dll.add("raoda");
+			dll.add("fr");
+			dll.add("eww");
+			dll.add("drrrr", 3);
+			dll.add("raefeoda");
+			dll.add("www");
+			dll.addLast("bhai me last me hu");
+			dll.addLast("bhai me last me hu ekdum");
+			System.out.println(dll.size());
 
-		dll.remove("drrrr");
-		System.out.println(dll.size());
-		dll.removeFirst();
-		dll.removeLast();
-		
-		dll.addFirst("kekde");
+			dll.remove("drrrr");
+			System.out.println(dll.size());
+			dll.removeFirst();
+			dll.removeLast();
 
-		dll.remove("eferfercw");
-		System.out.println(dll.size());
-		System.out.println("Is contains " + dll.contains("bhai me last me hu"));
-		System.out.println("Is contains "
-				+ dll.contains("bhai ,,,me last me hu"));
-		System.out.println(dll);
-		System.out.println(dll.isEmpty());
-		// LinkedList l = new LinkedList();
-		// l.add("rvrv");
-		// l.add("sat");
-		// l.addLast("pitbull");
-		// l.add("145");
-		// System.out.println(l);
+			dll.addFirst("kekde");
+
+			dll.remove("eferfercw");
+			System.out.println(dll.size());
+			System.out.println("Is contains "
+					+ dll.contains("bhai me last me hu"));
+			System.out.println("Is contains "
+					+ dll.contains("bhai ,,,me last me hu"));
+			System.out.println(dll);
+			System.out.println(dll.isEmpty());
+		}
 
 	}
 
