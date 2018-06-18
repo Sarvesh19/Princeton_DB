@@ -3,7 +3,7 @@ package com.infy;
 import java.util.Arrays;
 
 /* 
- * This class is for creating own stack
+ * This class demonstrate Stack Datastructure
  * @author Sarvesh Yadav
  * 
  * */
