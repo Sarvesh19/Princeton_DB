@@ -152,7 +152,6 @@ public class MyStack {
 		// stack.pop();
 		// stack.pop();
 		// stack.pop();
-		// stack.
 
 		for (int i = 0; i < stack.size(); i++) {
 			System.out.println(stack.getStack()[i]);
