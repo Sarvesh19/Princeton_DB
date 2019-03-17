@@ -28,6 +28,7 @@ public class MyStack {
 	}
 
 	public MyStack() {
+		// default constructor
 	}
 
 	public MyStack(int size) {
