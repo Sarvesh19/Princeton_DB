@@ -17,7 +17,7 @@ public class DoublyLinkedList {
 	private int modCount = 0;
 
 	/*
-	 * Inner Node class which provide property @next @previous and @element
+	 * The Inner Node class which provide property @next @previous and @element
 	 */
 	private class Node {
 		private Node next;
