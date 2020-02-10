@@ -138,6 +138,7 @@ public class MyStack {
 		stack.push(15488);
 		stack.push(154444);
 		stack.pop();
+		stack.pop();
 		stack.remove(2);
 		stack.pop();
 		// stack.pop();
