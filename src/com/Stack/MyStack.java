@@ -10,6 +10,7 @@ import java.util.Arrays;
 public class MyStack {
 
 	// private int initialLen = 10;
+	
 	private Object array[] = {};
 	private int index = 0;
 	private int size = 0;
